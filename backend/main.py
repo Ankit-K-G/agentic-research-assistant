@@ -3,11 +3,11 @@ from fastapi import FastAPI, BackgroundTasks, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 
-# Our PDF + Markdown helpers
-from .tools.pdf_tools import markdown_from_paper, generate_pdf_from_text
+# --- FIXED: use absolute imports instead of relative ---
+from tools.pdf_tools import markdown_from_paper, generate_pdf_from_text
+from agents.orchestrator import Orchestrator
 
-# Orchestrator
-from .agents.orchestrator import Orchestrator
+# -------------------------------------------------------
 
 app = FastAPI(title="Agentic Research Assistant")
 
@@ -35,7 +35,6 @@ async def run_research(background_tasks: BackgroundTasks, mode: str = Query("def
       - simulate
     Example: POST /run?mode=explore
     """
-    # Start the orchestrator pipeline with the selected mode
     run_id = orchestrator.start(mode=mode)
     return {"run_id": run_id, "status": "started", "mode": mode}
 
@@ -57,7 +56,7 @@ async def result(run_id: str):
 
 
 # -----------------------------------------
-# NEW: DOWNLOAD RESULT (Markdown or PDF)
+# DOWNLOAD RESULT (Markdown / PDF)
 # -----------------------------------------
 @app.get('/result/{run_id}/download')
 def download_result(run_id: str, format: str = "md"):
@@ -69,7 +68,7 @@ def download_result(run_id: str, format: str = "md"):
     if not paper:
         return JSONResponse({"error": "run_id not found"}, status_code=404)
 
-    # Create Markdown version of the paper
+    # Convert to Markdown
     md = markdown_from_paper(paper)
 
     # -------- Markdown download --------
