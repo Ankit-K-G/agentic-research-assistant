@@ -1,0 +1,5 @@
+body { font-family: Inter, system-ui, Arial; margin: 0; background:#f7fafc; color:#111827; }
+.container { max-width: 900px; margin: 24px auto; padding: 16px; }
+.button { padding: 8px 12px; border-radius:6px; cursor:pointer; background:#2563eb; color:white; border:none; }
+.logbox { background:#111827; color:#e5e7eb; padding:12px; border-radius:8px; height:220px; overflow:auto; }
+.card { background:white; padding:12px; border-radius:8px; box-shadow: 0 4px 12px rgba(15,23,42,0.06); margin-top:12px; }
