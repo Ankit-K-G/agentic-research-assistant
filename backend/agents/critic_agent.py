@@ -1,7 +1,7 @@
 # backend/agents/critic_agent.py
 import json
 import re
-from ..tools.llm_client import generate
+from tools.llm_client import generate
 
 def clean_json(text: str) -> str:
     """

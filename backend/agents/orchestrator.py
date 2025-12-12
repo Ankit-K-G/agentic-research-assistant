@@ -1,7 +1,7 @@
 import uuid
 import asyncio
 from collections import defaultdict
-from ..tools.memory_manager import MemoryManager
+from tools.memory_manager import MemoryManager
 from .domain_scout import DomainScoutAgent
 from .question_generator import QuestionGeneratorAgent
 from .data_alchemist import DataAlchemistAgent
